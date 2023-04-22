@@ -1,0 +1,31 @@
+{% extends "personal_area/base.html" %}
+{% load i18n %}
+
+
+{% block title %}
+    {{ object.title }}
+{% endblock %}
+
+
+{% block body %}
+    <div class="row">
+        <div class="col-1"></div>
+        <div class="col-10">
+            <h1 style="text-align: center;">{{ object.title }}</h1>
+            <p>{% trans 'Description' %}: {{ object.description }}</p>
+            <p>{% trans 'Author' %}: {{ object.author }}</p>
+            <p>{% trans 'Language Level' %}: {{ object.language_level_from}} -> {{ object.language_level_to }}</p>
+            <p>{% trans 'Words' %}:</p>
+            <div class="row">
+                <div class="col-1"></div>
+                <div class="col-10">
+                    {% for word in object.words.all %}
+                        <p>{{ word.word }} - {{ word.root }} - {{ word.part_of_speech }} - {{ word.russian_value }}</p>
+                    {% endfor %}
+                </div>
+                <div class="col-1"></div>
+            </div>
+        </div>
+        <div class="col-1"></div>
+    </div>
+{% endblock %}

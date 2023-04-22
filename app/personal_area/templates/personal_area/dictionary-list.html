@@ -1,0 +1,61 @@
+{% extends "personal_area/base.html" %}
+{% load i18n %}
+
+
+{% block title %}
+    {% trans 'Your Dictionaries' %}
+{% endblock %}
+
+
+{% block body %}
+    <div class="row">
+        <div class="col-1"></div>
+        <div class="col-10">
+            <div class="row">
+                <div class="col-12" style="text-align: center;">
+                    <h1>{% trans 'All Your Dictionaries' %}</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    {% for dictionary in object_list %}
+                        <div class="row">
+                            <div class="col-12">
+                                <p><a href="{% url 'personal_area:dictionary-detail' pk=dictionary.pk %}">{% trans 'Title' %}: {{ dictionary.title }}</a></p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <p>{% trans 'Description' %}: {{ dictionary.description }}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <p>{% trans 'Author' %}: {{ dictionary.author }}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <p>{% trans 'Words' %}:</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-1"></div>
+                            <div class="col-10">
+                                <p>{{ dictionary.words.all.0.word }}</p>
+                                <p>{{ dictionary.words.all.1.word }}</p>
+                                <p>{{ dictionary.words.all.2.word }}</p>
+                                <p>{{ dictionary.words.all.3.word }}</p>
+                                <p>{{ dictionary.words.all.4.word }}</p>
+                            </div>
+                            <div class="col-1"></div>
+                        </div>
+                    {% empty %}
+                        <h2>{% trans "You don't have dictionary yet" %}. {% trans 'But you can' %} <a href="">{% trans 'create a new dictionary' %}</a>{% trans 'right now' %}</h2>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="col-1"></div>
+    </div>
+{% endblock %}

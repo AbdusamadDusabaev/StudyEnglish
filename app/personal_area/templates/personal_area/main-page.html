@@ -1,0 +1,82 @@
+{% extends "personal_area/base.html" %}
+{% load i18n %}
+
+
+{% block title %}
+    {% trans 'Personal Area' %}
+{% endblock %}
+
+
+{% block body %}
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-8"><h1 style="text-align: center;">{{ user.profile.first_name }} {{ user.profile.second_name }}</h1></div>
+        <div class="col-2"></div>
+    </div>
+    <div class="row">
+        <div class="col-6" style="text-align: center;">
+            <div class="personal-info">
+                <div class="row">
+                    <div class="col-1"></div>
+                    <div class="col-10">
+                        <h2>{% trans 'Personal Info' %}</h2>
+                    </div>
+                    <div class="col-1"></div>
+                </div>
+                <div class="row">
+                    <div class="col-1"></div>
+                    <div class="col-10"><img src="{{ user.profile.avatar.url }}" alt="" style="width: 100%;"></div>
+                    <div class="col-1"></div>
+                </div>
+                <div class="row" style="height: 10px;"></div>
+                <div class="row">
+                    <div class="col-1"></div>
+                    <div class="col-10" style="text-align: left;">
+                        <p>{% trans 'First Name' %}: {{ user.profile.first_name }}</p>
+                        <p>{% trans 'Second Name' %}: {{ user.profile.second_name }}</p>
+                        <p>{% trans 'Email' %}: {{ user.profile.email }}</p>
+                    </div>
+                    <div class="col-1"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="row">
+                <div class="col-1"></div>
+                <div class="col-10" style="text-align: center;">
+                    <h2>{% trans 'Personal Statistics' %}</h2>
+                </div>
+                <div class="col-1"></div>
+            </div>
+            <div class="row">
+                <div class="col-1"></div>
+                <div class="col-10">
+                    <p>{% trans 'Progress Points' %}: {{ user.profile.progress_points }}</p>
+                    <p>{% trans 'Language Level' %}: {{ user.profile.language_level }}</p>
+                    <p>{% trans 'Amount all read words' %}: {{ user.profile.amount_read_words }}</p>
+                    <p>{% trans 'Amount all read articles' %}: {{ user.profile.amount_read_articles }}</p>
+                </div>
+                <div class="col-1"></div>
+            </div>
+            <div class="row">
+                <div class="col-1"></div>
+                <div class="col-10">
+                    <p><a href="{% url 'personal_area:dictionary-list' %}">{% trans 'Amount all dictionaries' %}: {{ amount_all_dictionaries }}</a></p>
+                    <p><a href="">{% trans 'Amount all learned words' %}: {{ amount_all_learned_words }}</a></p>
+                    <div class="row">
+                        <div class="col-2"></div>
+                        <div class="col-10">
+                            <p>{% trans 'Percent of Verbs' %}: {{ percent_of_verbs }} %</p>
+                            <p>{% trans 'Percent of Adverbs' %}: {{ percent_of_adverbs }} %</p>
+                            <p>{% trans 'Percent of Adjectives' %}: {{ percent_of_adjectives }} %</p>
+                            <p>{% trans 'Percent of Nouns' %}: {{ percent_of_nouns }} %</p>
+                        </div>
+                        <div class="col-2"></div>
+                    </div>
+                </div>
+                <div class="col-1"></div>
+            </div>
+
+        </div>
+    </div>
+{% endblock %}

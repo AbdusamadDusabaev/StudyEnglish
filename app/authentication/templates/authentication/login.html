@@ -1,0 +1,16 @@
+{% extends "authentication/base.html" %}
+{% load i18n %}
+
+{% block title %}
+    {% trans 'Login' %}
+{% endblock %}
+
+
+{% block body %}
+    <h1>{% trans 'Login Form' %}</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">{% trans 'Login' %}</button>
+    </form>
+{% endblock %}
